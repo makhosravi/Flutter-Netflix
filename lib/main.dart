@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/core/configs/theme/app_theme.dart';
 import 'package:flutter_movie/presentation/splash/pages/splash.dart';
 
 void main() {
@@ -11,9 +12,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      theme: AppTheme.appTheme,
+      home: const SplashPage(),
     );
   }
 }
