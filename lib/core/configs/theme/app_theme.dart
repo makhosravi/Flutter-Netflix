@@ -28,14 +28,16 @@ class AppTheme {
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primary,
-        elevation: 0.0,
-        textStyle: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400,),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100.0),
-        ),
-      )
-    ),
+        style: ElevatedButton.styleFrom(
+      backgroundColor: AppColors.primary,
+      elevation: 0.0,
+      textStyle: const TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.w400,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(100.0),
+      ),
+    )),
   );
 }
