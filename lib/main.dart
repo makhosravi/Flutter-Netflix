@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movie/core/configs/theme/app_theme.dart';
+import 'package:flutter_movie/presentation/splash/bloc/splash_cubit.dart';
 import 'package:flutter_movie/presentation/splash/pages/splash.dart';
 
 void main() {
@@ -18,10 +20,13 @@ class MyApp extends StatelessWidget {
         statusBarColor: Colors.transparent,
       ),
     );
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.appTheme,
-      home: const SplashPage(),
+    return BlocProvider(
+      create: (context)=> SplashCubit()..appStarted(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.appTheme,
+        home: const SplashPage(),
+      ),
     );
   }
 }
