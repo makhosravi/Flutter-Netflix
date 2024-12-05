@@ -12,27 +12,45 @@ class SigninPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: const EdgeInsets.only(top: 100.0, right: 16.0, left: 16.0,),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _singinText(),
-          const SizedBox(height: 30.0,),
-          _emailField(),
-          const SizedBox(height: 20.0,),
-          _passwordField(),
-          const SizedBox(height: 60.0,),
-          _signinButton(),
-          const SizedBox(height: 20.0,),
-          _singupText(context),
-        ],
-      )),
+          minimum: const EdgeInsets.only(
+            top: 100.0,
+            right: 16.0,
+            left: 16.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _singinText(),
+              const SizedBox(
+                height: 30.0,
+              ),
+              _emailField(),
+              const SizedBox(
+                height: 20.0,
+              ),
+              _passwordField(),
+              const SizedBox(
+                height: 60.0,
+              ),
+              _signinButton(),
+              const SizedBox(
+                height: 20.0,
+              ),
+              _singupText(context),
+            ],
+          )),
     );
   }
 
   Widget _singinText() {
-    return const Text('Sing in', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0,),);
+    return const Text(
+      'Sing in',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 24.0,
+      ),
+    );
   }
 
   Widget _emailField() {
@@ -55,9 +73,9 @@ class SigninPage extends StatelessWidget {
     return ReactiveButton(
       title: 'Sing in',
       activeColor: AppColors.primary,
-    onPressed: () async {}, 
-    onSuccess: (){}, 
-    onFailure: (error){},
+      onPressed: () async {},
+      onSuccess: () {},
+      onFailure: (error) {},
     );
   }
 
@@ -71,9 +89,13 @@ class SigninPage extends StatelessWidget {
           TextSpan(
             text: ' Sign Up ',
             style: const TextStyle(color: Colors.blue),
-            recognizer: TapGestureRecognizer()..onTap = (){
-              AppNavigator.push(context, const SignupPage(),);
-            },
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                AppNavigator.push(
+                  context,
+                  const SignupPage(),
+                );
+              },
           ),
         ],
       ),
