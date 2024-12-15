@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_movie/core/constants/api_url.dart';
 import 'package:flutter_movie/core/network/interceptores.dart';
 
 class DioClient {
   late final Dio _dio;
   DioClient(): _dio = Dio(
     BaseOptions(
+      baseUrl: ApiUrl.baseURL,
       headers: {'Content-type' : 'application/json; charset=UTF-8'},
       responseType: ResponseType.json,
       sendTimeout: const Duration(seconds: 20),
