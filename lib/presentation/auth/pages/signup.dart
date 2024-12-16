@@ -2,11 +2,18 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/common/helper/navigation/app_navigation.dart';
 import 'package:flutter_movie/core/configs/theme/app_colors.dart';
+import 'package:flutter_movie/data/auth/models/signup_req_params.dart';
+import 'package:flutter_movie/data/auth/repositories/auth.dart';
+import 'package:flutter_movie/data/auth/sources/auth_api_service.dart';
+import 'package:flutter_movie/domain/auth/usecases/signup.dart';
 import 'package:flutter_movie/presentation/auth/pages/signin.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+  SignupPage({super.key});
+
+  final TextEditingController _emailCon = TextEditingController();
+  final TextEditingController _passwordCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +61,18 @@ class SignupPage extends StatelessWidget {
   }
 
   Widget _emailField() {
-    return const TextField(
-      decoration: InputDecoration(
+    return TextField(
+      controller: _emailCon,
+      decoration: const InputDecoration(
         hintText: 'Email',
       ),
     );
   }
 
   Widget _passwordField() {
-    return const TextField(
-      decoration: InputDecoration(
+    return TextField(
+      controller: _passwordCon,
+      decoration: const InputDecoration(
         hintText: 'Password',
       ),
     );
@@ -73,7 +82,9 @@ class SignupPage extends StatelessWidget {
     return ReactiveButton(
       title: 'Sing up',
       activeColor: AppColors.primary,
-      onPressed: () async {},
+      onPressed: () async {
+        await SignupUsecase(authRepositiry: AuthRepositoryImpl(authApiService: AuthApiServiceImpl(),),).call(params: SignupReqParams(email: _emailCon.text, password: _passwordCon.text,),);
+      },
       onSuccess: () {},
       onFailure: (error) {},
     );
@@ -93,7 +104,7 @@ class SignupPage extends StatelessWidget {
               ..onTap = () {
                 AppNavigator.push(
                   context,
-                  const SigninPage(),
+                  SigninPage(),
                 );
               },
           ),
