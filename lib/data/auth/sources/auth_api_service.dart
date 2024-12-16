@@ -25,3 +25,11 @@ class AuthApiServiceImpl extends AuthApiService{
     
   }
 }
+
+class AuthFirebaseApiService extends AuthApiService{
+  @override
+  Future<Either> signup(SignupReqParams params) {
+    // TODO: implement signup
+    throw UnimplementedError();
+  }
+}
