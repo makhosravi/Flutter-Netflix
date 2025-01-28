@@ -83,12 +83,17 @@ class SigninPage extends StatelessWidget {
     return ReactiveButton(
       title: 'Sing in',
       activeColor: AppColors.primary,
-      onPressed: () async => sl<SigninUsecase>().call(params: SigninReqParams(email: _emailCon.text
-      , password: _passwordCon.text,
-      ),
+      onPressed: () async => sl<SigninUsecase>().call(
+        params: SigninReqParams(
+          email: _emailCon.text,
+          password: _passwordCon.text,
+        ),
       ),
       onSuccess: () {
-        AppNavigator.pushAndRemove(context, const HomePage(),);
+        AppNavigator.pushAndRemove(
+          context,
+          const HomePage(),
+        );
       },
       onFailure: (error) {
         DisplayMessage.errorMessage(error, context);

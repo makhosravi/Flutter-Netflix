@@ -2,7 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 
 class LoggerInterceptor extends Interceptor {
-  Logger logger = Logger(printer: PrettyPrinter(methodCount: 0, colors: true, printEmojis: true,),);
+  Logger logger = Logger(
+    printer: PrettyPrinter(
+      methodCount: 0,
+      colors: true,
+      printEmojis: true,
+    ),
+  );
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
@@ -22,10 +28,12 @@ class LoggerInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    logger.d('STATUSCODE: ${response.statusCode} \n '
-    'STATUSMESSAGE: ${response.statusMessage} \n '
-    'HEADERS: ${response.headers} \n '
-    'Data: ${response.data}',);
+    logger.d(
+      'STATUSCODE: ${response.statusCode} \n '
+      'STATUSMESSAGE: ${response.statusMessage} \n '
+      'HEADERS: ${response.headers} \n '
+      'Data: ${response.data}',
+    );
     handler.next(response);
   }
 }

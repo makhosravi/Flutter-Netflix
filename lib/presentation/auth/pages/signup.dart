@@ -87,13 +87,19 @@ class SignupPage extends StatelessWidget {
       activeColor: AppColors.primary,
       onPressed: () async {
         await sl<SignupUsecase>().call(
-          params: SignupReqParams(email: _emailCon.text, password: _passwordCon.text,),
+          params: SignupReqParams(
+            email: _emailCon.text,
+            password: _passwordCon.text,
+          ),
         );
         //use it without dependency injection
         //await SignupUsecase(authRepositiry: AuthRepositoryImpl(authApiService: AuthApiServiceImpl(),),).call(params: SignupReqParams(email: _emailCon.text, password: _passwordCon.text,),);
       },
       onSuccess: () {
-        AppNavigator.pushAndRemove(context, const HomePage(),);
+        AppNavigator.pushAndRemove(
+          context,
+          const HomePage(),
+        );
       },
       onFailure: (error) {
         DisplayMessage.errorMessage(error, context);

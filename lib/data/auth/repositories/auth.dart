@@ -9,48 +9,46 @@ import 'package:flutter_movie/service_locator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepositoryImpl extends AuthRepositiry {
-
   @override
   Future<Either> signup(SignupReqParams params) async {
     var data = await sl<AuthApiService>().signup(params);
-    return data.fold(
-      (error){
-        return Left(error);
-      },(data) async {
-        final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-        sharedPreferences.setString('token', data['user']['token']);
-        return Right(data);
-      }
-    );
+    return data.fold((error) {
+      return Left(error);
+    }, (data) async {
+      final SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.setString('token', data['user']['token']);
+      return Right(data);
+    });
 
     //before shared preferences
     //return await sl<AuthApiService>().signup(params);
 
     //without dependency injection
     //return await authApiService.signup(params);
-  } 
+  }
 
   @override
   Future<Either> signin(SigninReqParams params) async {
     print('CALLING SIGNIN');
     var data = await sl<AuthApiService>().signin(params);
     print('the result of sign in: $data');
-    return data.fold(
-      (error){
-        return Left(error);
-      }, (data) async {
-        final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-        print('tokennn=${data['user']['token']}');
-        sharedPreferences.setString('token', data['user']['token']);
-        return Right(data);
-      }
-      );
+    return data.fold((error) {
+      return Left(error);
+    }, (data) async {
+      final SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      print('tokennn=${data['user']['token']}');
+      sharedPreferences.setString('token', data['user']['token']);
+      return Right(data);
+    });
     //return await sl<AuthApiService>().signin(params);
   }
-  
+
   @override
   Future<bool> isLoggedIn() async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     var token = sharedPreferences.getString('token');
     return token != null ? true : false;
   }
@@ -61,5 +59,4 @@ class AuthRepositoryImpl extends AuthRepositiry {
   // AuthRepositoryImpl({
   //   required this.authApiService,
   // });
-  
 }

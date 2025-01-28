@@ -35,7 +35,8 @@ class SigninReqParams {
 
   String toJson() => json.encode(toMap());
 
-  factory SigninReqParams.fromJson(String source) => SigninReqParams.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory SigninReqParams.fromJson(String source) =>
+      SigninReqParams.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'SigninReqParams(email: $email, password: $password)';
@@ -43,10 +44,8 @@ class SigninReqParams {
   @override
   bool operator ==(covariant SigninReqParams other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.email == email &&
-      other.password == password;
+
+    return other.email == email && other.password == password;
   }
 
   @override

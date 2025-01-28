@@ -11,47 +11,44 @@ abstract class AuthApiService {
   Future<Either> signin(SigninReqParams params);
 }
 
-class AuthApiServiceImpl extends AuthApiService{
+class AuthApiServiceImpl extends AuthApiService {
   @override
   Future<Either> signup(SignupReqParams params) async {
-    try{
+    try {
       var response = await sl<DioClient>().post(
         ApiUrl.signup,
         data: params.toMap(),
       );
       return Right(response.data);
-    }
-    on DioException catch(e){
+    } on DioException catch (e) {
       return Left(e.response!.data['message']);
     }
-    
   }
-  
+
   @override
   Future<Either> signin(SigninReqParams params) async {
-    try{
+    try {
       var response = await sl<DioClient>().post(
         ApiUrl.singin,
         data: params.toMap(),
       );
       return Right(response.data);
-    } on DioException catch(e){
+    } on DioException catch (e) {
       return Left(e.response!.data['message']);
     }
   }
 }
 
-class AuthFirebaseApiService extends AuthApiService{
+class AuthFirebaseApiService extends AuthApiService {
   @override
   Future<Either> signup(SignupReqParams params) {
     // TODO: implement signup
     throw UnimplementedError();
   }
-  
+
   @override
   Future<Either> signin(SigninReqParams params) async {
     // TODO: implement signin
     throw UnimplementedError();
   }
-
 }

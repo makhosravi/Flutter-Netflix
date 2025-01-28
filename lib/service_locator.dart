@@ -1,4 +1,3 @@
-
 import 'package:flutter_movie/core/network/dio_client.dart';
 import 'package:flutter_movie/data/auth/repositories/auth.dart';
 import 'package:flutter_movie/data/auth/sources/auth_api_service.dart';
@@ -11,7 +10,6 @@ import 'package:get_it/get_it.dart';
 final sl = GetIt.instance;
 
 void setupServiceLocator() {
-
   sl.registerSingleton<DioClient>(DioClient());
 
   // Services
