@@ -44,6 +44,13 @@ class AuthRepositoryImpl extends AuthRepositiry {
       );
     //return await sl<AuthApiService>().signin(params);
   }
+  
+  @override
+  Future<bool> isLoggedIn() async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var token = sharedPreferences.getString('token');
+    return token != null ? true : false;
+  }
 
   // If not using dependency injection, this class must be used
   // in order to use the implementation
