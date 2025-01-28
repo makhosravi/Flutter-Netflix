@@ -6,6 +6,7 @@ import 'package:flutter_movie/core/configs/theme/app_colors.dart';
 import 'package:flutter_movie/data/auth/models/signin_req_params.dart';
 import 'package:flutter_movie/domain/auth/usecases/signin.dart';
 import 'package:flutter_movie/presentation/auth/pages/signup.dart';
+import 'package:flutter_movie/presentation/home/pages/home.dart';
 import 'package:flutter_movie/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
@@ -86,7 +87,9 @@ class SigninPage extends StatelessWidget {
       , password: _passwordCon.text,
       ),
       ),
-      onSuccess: () {},
+      onSuccess: () {
+        AppNavigator.pushAndRemove(context, const HomePage(),);
+      },
       onFailure: (error) {
         DisplayMessage.errorMessage(error, context);
       },

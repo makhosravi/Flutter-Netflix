@@ -8,6 +8,7 @@ import 'package:flutter_movie/data/auth/models/signup_req_params.dart';
 //import 'package:flutter_movie/data/auth/sources/auth_api_service.dart';
 import 'package:flutter_movie/domain/auth/usecases/signup.dart';
 import 'package:flutter_movie/presentation/auth/pages/signin.dart';
+import 'package:flutter_movie/presentation/home/pages/home.dart';
 import 'package:flutter_movie/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
@@ -91,7 +92,9 @@ class SignupPage extends StatelessWidget {
         //use it without dependency injection
         //await SignupUsecase(authRepositiry: AuthRepositoryImpl(authApiService: AuthApiServiceImpl(),),).call(params: SignupReqParams(email: _emailCon.text, password: _passwordCon.text,),);
       },
-      onSuccess: () {},
+      onSuccess: () {
+        AppNavigator.pushAndRemove(context, const HomePage(),);
+      },
       onFailure: (error) {
         DisplayMessage.errorMessage(error, context);
       },
