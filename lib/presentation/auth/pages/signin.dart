@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/common/helper/message/display_message.dart';
 import 'package:flutter_movie/common/helper/navigation/app_navigation.dart';
 import 'package:flutter_movie/core/configs/theme/app_colors.dart';
 import 'package:flutter_movie/data/auth/models/signin_req_params.dart';
@@ -39,7 +40,7 @@ class SigninPage extends StatelessWidget {
               const SizedBox(
                 height: 60.0,
               ),
-              _signinButton(),
+              _signinButton(context),
               const SizedBox(
                 height: 20.0,
               ),
@@ -77,7 +78,7 @@ class SigninPage extends StatelessWidget {
     );
   }
 
-  Widget _signinButton() {
+  Widget _signinButton(BuildContext context) {
     return ReactiveButton(
       title: 'Sing in',
       activeColor: AppColors.primary,
@@ -86,7 +87,9 @@ class SigninPage extends StatelessWidget {
       ),
       ),
       onSuccess: () {},
-      onFailure: (error) {},
+      onFailure: (error) {
+        DisplayMessage.errorMessage(error, context);
+      },
     );
   }
 
