@@ -2,7 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/common/helper/navigation/app_navigation.dart';
 import 'package:flutter_movie/core/configs/theme/app_colors.dart';
+import 'package:flutter_movie/data/auth/models/signin_req_params.dart';
+import 'package:flutter_movie/domain/auth/usecases/signin.dart';
 import 'package:flutter_movie/presentation/auth/pages/signup.dart';
+import 'package:flutter_movie/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 class SigninPage extends StatelessWidget {
@@ -78,7 +81,10 @@ class SigninPage extends StatelessWidget {
     return ReactiveButton(
       title: 'Sing in',
       activeColor: AppColors.primary,
-      onPressed: () async {},
+      onPressed: () async => sl<SigninUsecase>().call(params: SigninReqParams(email: _emailCon.text
+      , password: _passwordCon.text,
+      ),
+      ),
       onSuccess: () {},
       onFailure: (error) {},
     );
