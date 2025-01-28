@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie/common/helper/navigation/app_navigation.dart';
 import 'package:flutter_movie/core/configs/theme/app_colors.dart';
 import 'package:flutter_movie/data/auth/models/signup_req_params.dart';
-import 'package:flutter_movie/data/auth/repositories/auth.dart';
-import 'package:flutter_movie/data/auth/sources/auth_api_service.dart';
+//import 'package:flutter_movie/data/auth/repositories/auth.dart';
+//import 'package:flutter_movie/data/auth/sources/auth_api_service.dart';
 import 'package:flutter_movie/domain/auth/usecases/signup.dart';
 import 'package:flutter_movie/presentation/auth/pages/signin.dart';
+import 'package:flutter_movie/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 class SignupPage extends StatelessWidget {
@@ -83,7 +84,11 @@ class SignupPage extends StatelessWidget {
       title: 'Sing up',
       activeColor: AppColors.primary,
       onPressed: () async {
-        await SignupUsecase(authRepositiry: AuthRepositoryImpl(authApiService: AuthApiServiceImpl(),),).call(params: SignupReqParams(email: _emailCon.text, password: _passwordCon.text,),);
+        await sl<SignupUsecase>().call(
+          params: SignupReqParams(email: _emailCon.text, password: _passwordCon.text,),
+        );
+        //use it without dependency injection
+        //await SignupUsecase(authRepositiry: AuthRepositoryImpl(authApiService: AuthApiServiceImpl(),),).call(params: SignupReqParams(email: _emailCon.text, password: _passwordCon.text,),);
       },
       onSuccess: () {},
       onFailure: (error) {},
