@@ -30,15 +30,12 @@ class AuthRepositoryImpl extends AuthRepositiry {
 
   @override
   Future<Either> signin(SigninReqParams params) async {
-    print('CALLING SIGNIN');
     var data = await sl<AuthApiService>().signin(params);
-    print('the result of sign in: $data');
     return data.fold((error) {
       return Left(error);
     }, (data) async {
       final SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
-      print('tokennn=${data['user']['token']}');
       sharedPreferences.setString('token', data['user']['token']);
       return Right(data);
     });
