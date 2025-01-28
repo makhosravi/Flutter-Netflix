@@ -6,8 +6,44 @@ import 'package:flutter_movie/data/auth/sources/auth_api_service.dart';
 //import 'package:flutter_movie/data/auth/sources/auth_api_service.dart';
 import 'package:flutter_movie/domain/auth/repositiries/auth.dart';
 import 'package:flutter_movie/service_locator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepositoryImpl extends AuthRepositiry {
+
+  @override
+  Future<Either> signup(SignupReqParams params) async {
+    var data = await sl<AuthApiService>().signup(params);
+    return data.fold(
+      (error){
+        return Left(error);
+      },(data) async {
+        final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+        sharedPreferences.setString('token', data['user']['token']);
+        return Right(data);
+      }
+    );
+
+    //before shared preferences
+    //return await sl<AuthApiService>().signup(params);
+
+    //without dependency injection
+    //return await authApiService.signup(params);
+  } 
+
+  @override
+  Future<Either> signin(SigninReqParams params) async {
+    var data = await sl<AuthApiService>().signin(params);
+    return data.fold(
+      (error){
+        return Left(error);
+      }, (data) async {
+        SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+        sharedPreferences.setString('token', data['user']['token']);
+        return Right(data);
+      }
+      );
+    //return await sl<AuthApiService>().signin(params);
+  }
 
   // If not using dependency injection, this class must be used
   // in order to use the implementation
@@ -15,16 +51,5 @@ class AuthRepositoryImpl extends AuthRepositiry {
   // AuthRepositoryImpl({
   //   required this.authApiService,
   // });
-
-  @override
-  Future<Either> signup(SignupReqParams params) async {
-    //return await authApiService.signup(params);
-    return await sl<AuthApiService>().signup(params);
-  } 
-
-  @override
-  Future<Either> signin(SigninReqParams params) async {
-    return await sl<AuthApiService>().signin(params);
-  }
   
 }
