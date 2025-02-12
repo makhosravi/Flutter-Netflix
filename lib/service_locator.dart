@@ -1,6 +1,6 @@
 import 'package:flutter_movie/core/network/dio_client.dart';
 import 'package:flutter_movie/data/auth/repositories/auth.dart';
-import 'package:flutter_movie/data/auth/sources/auth_api_service.dart';
+import 'package:flutter_movie/data/auth/sources/auth_service.dart';
 import 'package:flutter_movie/domain/auth/repositiries/auth.dart';
 import 'package:flutter_movie/domain/auth/usecases/is_logged_in.dart';
 import 'package:flutter_movie/domain/auth/usecases/signin.dart';
@@ -13,7 +13,7 @@ void setupServiceLocator() {
   sl.registerSingleton<DioClient>(DioClient());
 
   // Services
-  sl.registerSingleton<AuthApiService>(AuthApiServiceImpl());
+  sl.registerSingleton<AuthService>(AuthApiServiceImpl());
 
   // Repositories
   sl.registerSingleton<AuthRepositiry>(AuthRepositoryImpl());

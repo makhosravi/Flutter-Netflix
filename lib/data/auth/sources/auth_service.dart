@@ -6,12 +6,12 @@ import 'package:flutter_movie/data/auth/models/signin_req_params.dart';
 import 'package:flutter_movie/data/auth/models/signup_req_params.dart';
 import 'package:flutter_movie/service_locator.dart';
 
-abstract class AuthApiService {
+abstract class AuthService {
   Future<Either> signup(SignupReqParams params);
   Future<Either> signin(SigninReqParams params);
 }
 
-class AuthApiServiceImpl extends AuthApiService {
+class AuthApiServiceImpl extends AuthService {
   @override
   Future<Either> signup(SignupReqParams params) async {
     try {
@@ -39,7 +39,7 @@ class AuthApiServiceImpl extends AuthApiService {
   }
 }
 
-class AuthFirebaseApiService extends AuthApiService {
+class AuthFirebaseApiService extends AuthService {
   @override
   Future<Either> signup(SignupReqParams params) {
     // TODO: implement signup
