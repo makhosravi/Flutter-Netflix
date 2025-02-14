@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,7 +46,6 @@ class AuthorizationInterceptor extends Interceptor {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     final token = sharedPreferences.getString('token');
-    print('token is sent to get trends ==> $token');
     options.headers['Authorization'] = "Bearer $token";
     handler.next(options);
   }
