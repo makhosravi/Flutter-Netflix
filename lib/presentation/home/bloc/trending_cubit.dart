@@ -3,18 +3,18 @@ import 'package:flutter_movie/domain/movie/usecases/get_trending_movies.dart';
 import 'package:flutter_movie/presentation/home/bloc/trending_state.dart';
 import 'package:flutter_movie/service_locator.dart';
 
-class TrendingCubit extends Cubit<TrendingState>{
+class TrendingCubit extends Cubit<TrendingState> {
   TrendingCubit() : super(TrendingMoviesLoading());
 
   void getTrendingMovies() async {
     var returnedData = await sl<GetTrendingMoviesUsecase>().call();
     returnedData.fold(
-      (error){
+      (error) {
         emit(FailureLoadTrendingMovies(errorMessage: error));
-      }, 
-      (data){
+      },
+      (data) {
         emit(TrendingMoviesLoaded(movies: data));
       },
-      );
+    );
   }
 }

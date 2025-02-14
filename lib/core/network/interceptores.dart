@@ -42,9 +42,11 @@ class LoggerInterceptor extends Interceptor {
 }
 
 class AuthorizationInterceptor extends Interceptor {
-    @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  @override
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     final token = sharedPreferences.getString('token');
     print('token is sent to get trends ==> $token');
     options.headers['Authorization'] = "Bearer $token";

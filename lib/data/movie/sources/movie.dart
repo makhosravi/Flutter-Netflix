@@ -9,13 +9,13 @@ abstract class MovieService {
   Future<Either> getTrendingMovies();
 }
 
-class MovieServiceImpl extends MovieService{
+class MovieServiceImpl extends MovieService {
   @override
   Future<Either> getTrendingMovies() async {
-    try{
+    try {
       var response = await sl<DioClient>().get(ApiUrl.trendingMovies);
       return Right(response.data);
-    } on DioException catch(e){
+    } on DioException catch (e) {
       return Left(e.response!.data['message']);
     }
   }

@@ -13,8 +13,12 @@ class HomePage extends StatelessWidget {
       appBar: BasicAppbar(
         hideBack: true,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 10.0,),
-          child: SvgPicture.asset(AppVectors.logo,),
+          padding: const EdgeInsets.only(
+            left: 10.0,
+          ),
+          child: SvgPicture.asset(
+            AppVectors.logo,
+          ),
         ),
       ),
       body: const Column(

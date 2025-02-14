@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/core/configs/theme/app_colors.dart';
 
-class BasicAppbar extends StatelessWidget implements PreferredSizeWidget{
-  final Widget ? title;
-  final Widget ? action;
-  final Widget ? leading;
-  final Color ? backgroundColor;
+class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
+  final Widget? title;
+  final Widget? action;
+  final Widget? leading;
+  final Color? backgroundColor;
   final bool hideBack;
-  final double ? height;
+  final double? height;
 
-  const BasicAppbar({super.key, 
-  this.title, 
-  this.action, 
-  this.leading,
-  this.backgroundColor, 
-  this.hideBack = false, 
-  this.height});
+  const BasicAppbar(
+      {super.key,
+      this.title,
+      this.action,
+      this.leading,
+      this.backgroundColor,
+      this.hideBack = false,
+      this.height});
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -27,28 +28,31 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget{
       title: title ?? const Text(''),
       titleSpacing: 0,
       leadingWidth: leading != null ? 150 : null,
-      actions: [
-        action ?? Container()
-      ],
-      leading: leading ?? (hideBack ? null : IconButton(
-        onPressed: (){Navigator.pop(context);}, 
-        icon: Container(
-          height: 50,
-          width: 50,
-          decoration: const BoxDecoration(
-            color: AppColors.secondBackground,
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.arrow_back_ios_new,
-            size: 15,
-            color: Colors.white,
-            ),
-        ),)),
+      actions: [action ?? Container()],
+      leading: leading ??
+          (hideBack
+              ? null
+              : IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: const BoxDecoration(
+                      color: AppColors.secondBackground,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 15,
+                      color: Colors.white,
+                    ),
+                  ),
+                )),
     );
   }
 
   @override
   Size get preferredSize => Size.fromHeight(height ?? 80);
-  
 }

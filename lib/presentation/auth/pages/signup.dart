@@ -85,15 +85,14 @@ class SignupPage extends StatelessWidget {
     return ReactiveButton(
       title: 'Sing up',
       activeColor: AppColors.primary,
-      onPressed: () async =>
-        await sl<SignupUsecase>().call(
-          params: SignupReqParams(
-            email: _emailCon.text,
-            password: _passwordCon.text,
-          ),
-        )
-        //use it without dependency injection
-        //await SignupUsecase(authRepositiry: AuthRepositoryImpl(authApiService: AuthApiServiceImpl(),),).call(params: SignupReqParams(email: _emailCon.text, password: _passwordCon.text,),);
+      onPressed: () async => await sl<SignupUsecase>().call(
+        params: SignupReqParams(
+          email: _emailCon.text,
+          password: _passwordCon.text,
+        ),
+      )
+      //use it without dependency injection
+      //await SignupUsecase(authRepositiry: AuthRepositoryImpl(authApiService: AuthApiServiceImpl(),),).call(params: SignupReqParams(email: _emailCon.text, password: _passwordCon.text,),);
       ,
       onSuccess: () {
         AppNavigator.pushAndRemove(

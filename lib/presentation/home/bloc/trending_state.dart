@@ -4,7 +4,7 @@ import 'package:flutter_movie/domain/movie/enteties/movie_entity.dart';
 
 abstract class TrendingState {}
 
-class TrendingMoviesLoading extends TrendingState{}
+class TrendingMoviesLoading extends TrendingState {}
 
 class TrendingMoviesLoaded extends TrendingState {
   final List<MovieEntity> movies;
