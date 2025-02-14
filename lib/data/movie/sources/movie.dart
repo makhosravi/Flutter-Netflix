@@ -13,8 +13,8 @@ class MovieServiceImpl extends MovieService{
   @override
   Future<Either> getTrendingMovies() async {
     try{
-      var response = await sl<DioClient>().post(ApiUrl.trendingMovies);
-      return Right(response);
+      var response = await sl<DioClient>().get(ApiUrl.trendingMovies);
+      return Right(response.data);
     } on DioException catch(e){
       return Left(e.response!.data['message']);
     }
