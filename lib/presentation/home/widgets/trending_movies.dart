@@ -2,8 +2,8 @@ import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movie/core/configs/assets/app_images.dart';
-import 'package:flutter_movie/presentation/home/bloc/trending_cubit.dart';
-import 'package:flutter_movie/presentation/home/bloc/trending_state.dart';
+import 'package:flutter_movie/presentation/home/bloc/trendings_cubit.dart';
+import 'package:flutter_movie/presentation/home/bloc/trendings_state.dart';
 
 class TrendingMovies extends StatelessWidget {
   const TrendingMovies({super.key});
@@ -21,15 +21,12 @@ class TrendingMovies extends StatelessWidget {
           if (state is TrendingMoviesLoaded) {
             return FanCarouselImageSlider.sliderType1(
               imagesLink: state.movies
-                  .map(
-                    (item) =>
-                        AppImages.movieImageBasePath +
-                        item.posterPath.toString(),
-                  )
+                  .map((item) =>
+                      AppImages.movieImageBasePath + item.posterPath.toString())
                   .toList(),
               isAssets: false,
               autoPlay: false,
-              sliderHeight: 400,
+              sliderHeight: 400.0,
               showIndicator: true,
             );
           }

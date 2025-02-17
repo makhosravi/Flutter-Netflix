@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movie/domain/movie/usecases/get_trending_movies.dart';
-import 'package:flutter_movie/presentation/home/bloc/trending_state.dart';
+import 'package:flutter_movie/presentation/home/bloc/trendings_state.dart';
 import 'package:flutter_movie/service_locator.dart';
 
 class TrendingCubit extends Cubit<TrendingState> {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/common/widgets/appbar/app_bar.dart';
 import 'package:flutter_movie/core/configs/assets/app_vectors.dart';
+import 'package:flutter_movie/presentation/home/widgets/category_text.dart';
+import 'package:flutter_movie/presentation/home/widgets/now_playing_movies.dart';
 import 'package:flutter_movie/presentation/home/widgets/trending_movies.dart';
-import 'package:flutter_movie/presentation/home/widgets/trending_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,12 +22,22 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TrendingText(),
+            CategoryText(title: 'Trendings 🤞'),
             TrendingMovies(),
+            SizedBox(
+              height: 16.0,
+            ),
+            CategoryText(title: 'Now Playing 💕'),
+            SizedBox(
+              height: 16.0,
+            ),
+            NowPlayingMovies(),
+            SizedBox(
+              height: 16.0,
+            ),
           ],
         ),
       ),
     );
   }
 }
-
