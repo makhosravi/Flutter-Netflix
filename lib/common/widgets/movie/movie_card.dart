@@ -5,8 +5,8 @@ import 'package:flutter_movie/domain/movie/enteties/movie_entity.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({
-    required this.movieEntity,
     super.key,
+    required this.movieEntity,
   });
 
   final MovieEntity movieEntity;
@@ -67,7 +67,7 @@ class MovieCard extends StatelessWidget {
                         color: Colors.amber,
                       ),
                       Text(
-                        ' ${movieEntity.voteAverage.toStringAsFixed(1)}',
+                        ' ${movieEntity.voteAverage.toDouble().toStringAsFixed(1)}',
                         style: const TextStyle(
                           fontSize: 10.0,
                         ),

@@ -85,7 +85,7 @@ class TVModel extends Equatable {
       posterPath: json["poster_path"] ?? "",
       firstAirDate: DateTime.tryParse(json["first_air_date"] ?? ""),
       name: json["name"] ?? "",
-      voteAverage: json["vote_average"] ?? 0.0,
+      voteAverage: double.parse(json["vote_average"].toString()),
       voteCount: json["vote_count"] ?? 0,
     );
   }

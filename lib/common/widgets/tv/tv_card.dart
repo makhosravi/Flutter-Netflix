@@ -5,8 +5,8 @@ import 'package:flutter_movie/domain/tv/entities/tv_entity.dart';
 
 class TVCard extends StatelessWidget {
   const TVCard({
-    required this.tvEntity,
     super.key,
+    required this.tvEntity,
   });
 
   final TVEntity tvEntity;
@@ -67,7 +67,7 @@ class TVCard extends StatelessWidget {
                         color: Colors.amber,
                       ),
                       Text(
-                        ' ${tvEntity.voteAverage.toStringAsFixed(1)}',
+                        ' ${tvEntity.voteAverage.toDouble().toStringAsFixed(1)}',
                         style: const TextStyle(
                           fontSize: 10.0,
                         ),

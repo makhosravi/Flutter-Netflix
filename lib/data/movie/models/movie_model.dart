@@ -90,7 +90,7 @@ class MovieModel extends Equatable {
       popularity: json["popularity"] ?? 0.0,
       releaseDate: DateTime.tryParse(json["release_date"] ?? ""),
       video: json["video"] ?? false,
-      voteAverage: json["vote_average"] ?? 0.0,
+      voteAverage: double.parse(json["vote_average"].toString()),
       voteCount: json["vote_count"] ?? 0,
     );
   }

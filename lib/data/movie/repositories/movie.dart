@@ -39,7 +39,7 @@ class MovieRepositoryImpl extends MovieRepository {
             )
             .toList();
         return Right(movies);
-      },
+      }
     );
   }
 }

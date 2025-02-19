@@ -22,7 +22,7 @@ class TVRepositoryImpl extends TVRepository {
             )
             .toList();
         return Right(tv);
-      },
+      }
     );
   }
 }

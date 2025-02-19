@@ -71,28 +71,6 @@ class MovieEntity extends Equatable {
     );
   }
 
-  factory MovieEntity.fromJson(Map<String, dynamic> json) {
-    return MovieEntity(
-      backdropPath: json["backdrop_path"] ?? "",
-      id: json["id"] ?? 0,
-      title: json["title"] ?? "",
-      originalTitle: json["original_title"] ?? "",
-      overview: json["overview"] ?? "",
-      posterPath: json["poster_path"] ?? "",
-      mediaType: json["media_type"] ?? "",
-      adult: json["adult"] ?? false,
-      originalLanguage: json["original_language"] ?? "",
-      genreIds: json["genre_ids"] == null
-          ? []
-          : List<int>.from(json["genre_ids"]!.map((x) => x)),
-      popularity: json["popularity"] ?? 0.0,
-      releaseDate: DateTime.tryParse(json["release_date"] ?? ""),
-      video: json["video"] ?? false,
-      voteAverage: json["vote_average"] ?? 0.0,
-      voteCount: json["vote_count"] ?? 0,
-    );
-  }
-
   @override
   String toString() {
     return "$backdropPath, $id, $title, $originalTitle, $overview, $posterPath, $mediaType, $adult, $originalLanguage, $genreIds, $popularity, $releaseDate, $video, $voteAverage, $voteCount, ";
