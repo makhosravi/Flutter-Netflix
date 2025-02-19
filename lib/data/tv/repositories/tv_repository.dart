@@ -9,20 +9,17 @@ class TVRepositoryImpl extends TVRepository {
   @override
   Future<Either> getPopularTV() async {
     var returndata = await sl<TVService>().getPopularTv();
-    return returndata.fold(
-      (error) {
-        return Left(error);
-      },
-      (data) {
-        var tv = List.from(data['content'])
-            .map(
-              (item) => TVMapper.toEntity(
-                TVModel.fromJson(item),
-              ),
-            )
-            .toList();
-        return Right(tv);
-      }
-    );
+    return returndata.fold((error) {
+      return Left(error);
+    }, (data) {
+      var tv = List.from(data['content'])
+          .map(
+            (item) => TVMapper.toEntity(
+              TVModel.fromJson(item),
+            ),
+          )
+          .toList();
+      return Right(tv);
+    });
   }
 }
