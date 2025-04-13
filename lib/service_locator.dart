@@ -10,6 +10,7 @@ import 'package:flutter_movie/domain/auth/usecases/is_logged_in.dart';
 import 'package:flutter_movie/domain/auth/usecases/signin.dart';
 import 'package:flutter_movie/domain/auth/usecases/signup.dart';
 import 'package:flutter_movie/domain/movie/repositories/movie.dart';
+import 'package:flutter_movie/domain/movie/usecases/get_movie_trailer.dart';
 import 'package:flutter_movie/domain/movie/usecases/get_now_playing_movies.dart';
 import 'package:flutter_movie/domain/movie/usecases/get_trending_movies.dart';
 import 'package:flutter_movie/domain/tv/repositories/tv_repository.dart';
@@ -38,4 +39,5 @@ void setupServiceLocator() {
   sl.registerSingleton<GetTrendingMoviesUsecase>(GetTrendingMoviesUsecase());
   sl.registerSingleton<GetNowPlayingMovies>(GetNowPlayingMovies());
   sl.registerSingleton<GetPopularTVUseCase>(GetPopularTVUseCase());
+  sl.registerSingleton<GetMovieTrailerUsecase>(GetMovieTrailerUsecase());
 }
