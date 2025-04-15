@@ -5,6 +5,7 @@ import 'package:flutter_movie/presentation/watch/widgets/video_overview.dart';
 import 'package:flutter_movie/presentation/watch/widgets/video_player.dart';
 import 'package:flutter_movie/presentation/watch/widgets/video_recommendation_movies.dart';
 import 'package:flutter_movie/presentation/watch/widgets/video_release_date.dart';
+import 'package:flutter_movie/presentation/watch/widgets/video_similar_movies.dart';
 import 'package:flutter_movie/presentation/watch/widgets/video_title.dart';
 import 'package:flutter_movie/presentation/watch/widgets/video_vote_average.dart';
 
@@ -40,6 +41,8 @@ class MovieWatchPage extends StatelessWidget {
             VideoOverview(overview: movieEntity.overview),
             const SizedBox(height: 16.0),
             VideoRecommendationMovies(movieId: movieEntity.id),
+            const SizedBox(height: 16.0),
+            VideoSimilarMovies(movieId: movieEntity.id),
           ],
         ),
       ),
