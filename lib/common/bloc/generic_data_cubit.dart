@@ -4,9 +4,9 @@ import 'package:flutter_movie/core/usecase/usecase.dart';
 
 class GenericDataCubit extends Cubit<GenericDataState> {
   GenericDataCubit() : super(DataLoadind());
-  void getData<T>(Usecase usecase) async {
+  void getData<T>(Usecase usecase, {dynamic params}) async {
     var returnedData =
-        await usecase.call();
+        await usecase.call(params: params);
     returnedData.fold(
       (error) {
         emit(FailureData(errorMessage: error));

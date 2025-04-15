@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movie/common/bloc/generic_data_cubit.dart';
 import 'package:flutter_movie/common/bloc/generic_data_state.dart';
 import 'package:flutter_movie/common/widgets/tv/tv_card.dart';
-import 'package:flutter_movie/domain/movie/enteties/movie_entity.dart';
+import 'package:flutter_movie/domain/tv/entities/tv_entity.dart';
 import 'package:flutter_movie/domain/tv/usecases/get_popular_tv.dart';
 import 'package:flutter_movie/service_locator.dart';
 
@@ -13,7 +13,7 @@ class PopularTV extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GenericDataCubit()..getData<List<MovieEntity>>(sl<GetPopularTVUseCase>(),),
+      create: (context) => GenericDataCubit()..getData<List<TVEntity>>(sl<GetPopularTVUseCase>(),),
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
           if (state is DataLoadind) {
