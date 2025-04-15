@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movie/common/bloc/generic_data_cubit.dart';
+import 'package:flutter_movie/common/bloc/generic_data_state.dart';
 import 'package:flutter_movie/common/widgets/movie/movie_card.dart';
-import 'package:flutter_movie/presentation/watch/bloc/similar_movies_cubit.dart';
-import 'package:flutter_movie/presentation/watch/bloc/similar_movies_state.dart';
+import 'package:flutter_movie/domain/movie/enteties/movie_entity.dart';
+import 'package:flutter_movie/domain/movie/usecases/get_similar_movies_usecase.dart';
+import 'package:flutter_movie/service_locator.dart';
 
 class VideoSimilarMovies extends StatelessWidget {
   final int movieId;
@@ -14,15 +17,15 @@ class VideoSimilarMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SimilarMoviesCubit()..getSimilarMovies(movieId),
-      child: BlocBuilder<SimilarMoviesCubit, SimilarMoviesState>(
+      create: (context) => GenericDataCubit()..getData<List<MovieEntity>>(sl<GetSimilarMoviesUsecase>() , params: movieId,),
+      child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
-          if (state is SimilarMoviesLoadind) {
+          if (state is DataLoadind) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-          if (state is SimilarMoviesLoaded) {
+          if (state is DataLoaded) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -39,19 +42,19 @@ class VideoSimilarMovies extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return MovieCard(
-                        movieEntity: state.similarMovies[index],
+                        movieEntity: state.data[index],
                       );
                     },
                     separatorBuilder: (context, index) => const SizedBox(
                       width: 10.0,
                     ),
-                    itemCount: state.similarMovies.length,
+                    itemCount: state.data.length,
                   ),
                 ),
               ],
             );
           }
-          if (state is FailureSimilarMovies) {
+          if (state is FailureData) {
             return Text(state.errorMessage);
           }
           return Container();
