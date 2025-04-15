@@ -3,7 +3,7 @@ import 'package:flutter_movie/common/helper/navigation/app_navigation.dart';
 import 'package:flutter_movie/core/configs/assets/app_images.dart';
 import 'package:flutter_movie/core/configs/theme/app_colors.dart';
 import 'package:flutter_movie/domain/movie/enteties/movie_entity.dart';
-import 'package:flutter_movie/presentation/watch/pages/watch.dart';
+import 'package:flutter_movie/presentation/watch/pages/movie_watch.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({
