@@ -3,7 +3,7 @@ abstract class GenericDataState {}
 class DataLoadind extends GenericDataState {}
 
 class DataLoaded<T> extends GenericDataState {
-  final List<T> data;
+  final T data;
   DataLoaded({required this.data});
 }
 

@@ -12,7 +12,7 @@ class GenericDataCubit extends Cubit<GenericDataState> {
         emit(FailureData(errorMessage: error));
       },
       (data) {
-        emit(DataLoaded(data: data));
+        emit(DataLoaded<T>(data: data));
       },
     );
   }

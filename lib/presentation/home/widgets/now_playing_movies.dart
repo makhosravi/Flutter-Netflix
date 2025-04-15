@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movie/common/bloc/generic_data_cubit.dart';
+import 'package:flutter_movie/common/bloc/generic_data_state.dart';
 import 'package:flutter_movie/common/widgets/movie/movie_card.dart';
-import 'package:flutter_movie/presentation/home/bloc/now_playing_cubit.dart';
-import 'package:flutter_movie/presentation/home/bloc/now_playing_state.dart';
+import 'package:flutter_movie/domain/movie/enteties/movie_entity.dart';
+import 'package:flutter_movie/domain/movie/usecases/get_now_playing_movies.dart';
+import 'package:flutter_movie/service_locator.dart';
 
 class NowPlayingMovies extends StatelessWidget {
   const NowPlayingMovies({super.key});
@@ -10,32 +13,32 @@ class NowPlayingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NowPlayingCubit()..getNowPlayingMovies(),
-      child: BlocBuilder<NowPlayingCubit, NowPlayingState>(
+      create: (context) => GenericDataCubit()..getData<List<MovieEntity>>(sl<GetNowPlayingMovies>(),),
+      child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
-          if (state is NowPlayingLoading) {
+          if (state is DataLoadind) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-          if (state is NowPlayingLoaded) {
+          if (state is DataLoaded) {
             return SizedBox(
               height: 300.0,
               child: ListView.separated(
                 itemBuilder: (context, index) {
-                  return MovieCard(movieEntity: state.movies[index]);
+                  return MovieCard(movieEntity: state.data[index]);
                 },
                 separatorBuilder: (context, index) => const SizedBox(
                   width: 10.0,
                 ),
-                itemCount: state.movies.length,
+                itemCount: state.data.length,
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 scrollDirection: Axis.horizontal,
               ),
             );
           }
 
-          if (state is FailureLoadNowPlaying) {
+          if (state is FailureData) {
             return Text(state.errorMessage);
           }
 
