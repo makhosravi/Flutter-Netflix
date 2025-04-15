@@ -17,8 +17,11 @@ class VideoRecommendationMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          GenericDataCubit()..getData<List<MovieEntity>>(sl<GetRecommendationUsecase>(), params: movieId,),
+      create: (context) => GenericDataCubit()
+        ..getData<List<MovieEntity>>(
+          sl<GetRecommendationUsecase>(),
+          params: movieId,
+        ),
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
           if (state is DataLoadind) {

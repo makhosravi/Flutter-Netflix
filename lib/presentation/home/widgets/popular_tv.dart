@@ -13,7 +13,10 @@ class PopularTV extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GenericDataCubit()..getData<List<TVEntity>>(sl<GetPopularTVUseCase>(),),
+      create: (context) => GenericDataCubit()
+        ..getData<List<TVEntity>>(
+          sl<GetPopularTVUseCase>(),
+        ),
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
           if (state is DataLoadind) {
