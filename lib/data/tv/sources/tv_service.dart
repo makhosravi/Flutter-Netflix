@@ -6,6 +6,8 @@ import 'package:flutter_movie/service_locator.dart';
 
 abstract class TVService {
   Future<Either> getPopularTv();
+  Future<Either> getRecommendationTVs(int tvId);
+  Future<Either> getSimilarTVs(int tvId);
 }
 
 class TVServiceImpl extends TVService {
@@ -13,6 +15,30 @@ class TVServiceImpl extends TVService {
   Future<Either> getPopularTv() async {
     try {
       var response = await sl<DioClient>().get(ApiUrl.popularTV);
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> getRecommendationTVs(int tvId) async {
+    try {
+      var response = await sl<DioClient>().get(
+        '${ApiUrl.tv}$tvId/recommendations',
+      );
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> getSimilarTVs(int tvId) async {
+    try {
+      var response = await sl<DioClient>().get(
+        '${ApiUrl.tv}$tvId/similar',
+      );
       return Right(response.data);
     } on DioException catch (e) {
       return Left(e.response!.data['message']);

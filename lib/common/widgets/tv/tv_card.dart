@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/common/helper/navigation/app_navigation.dart';
 import 'package:flutter_movie/core/configs/assets/app_images.dart';
 import 'package:flutter_movie/core/configs/theme/app_colors.dart';
 import 'package:flutter_movie/domain/tv/entities/tv_entity.dart';
+import 'package:flutter_movie/presentation/watch/pages/tv_watch_page.dart';
 
 class TVCard extends StatelessWidget {
   const TVCard({
@@ -14,7 +16,12 @@ class TVCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        AppNavigator.push(
+          context,
+          TvWatchPage(tvEntity: tvEntity),
+        );
+      },
       child: Container(
         width: 180.0,
         decoration: BoxDecoration(

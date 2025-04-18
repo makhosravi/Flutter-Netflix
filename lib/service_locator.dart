@@ -17,6 +17,8 @@ import 'package:flutter_movie/domain/movie/usecases/get_similar_movies_usecase.d
 import 'package:flutter_movie/domain/movie/usecases/get_trending_movies.dart';
 import 'package:flutter_movie/domain/tv/repositories/tv_repository.dart';
 import 'package:flutter_movie/domain/tv/usecases/get_popular_tv.dart';
+import 'package:flutter_movie/domain/tv/usecases/get_recommendation_tv_usecase.dart';
+import 'package:flutter_movie/domain/tv/usecases/get_similar_tv_usecase.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -44,4 +46,7 @@ void setupServiceLocator() {
   sl.registerSingleton<GetMovieTrailerUsecase>(GetMovieTrailerUsecase());
   sl.registerSingleton<GetRecommendationUsecase>(GetRecommendationUsecase());
   sl.registerSingleton<GetSimilarMoviesUsecase>(GetSimilarMoviesUsecase());
+  sl.registerSingleton<GetRecommendationTvUsecase>(
+      GetRecommendationTvUsecase());
+  sl.registerSingleton<GetSimilarTvUsecase>(GetSimilarTvUsecase());
 }
