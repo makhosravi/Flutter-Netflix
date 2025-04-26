@@ -4,4 +4,5 @@ abstract class TVRepository {
   Future<Either> getPopularTV();
   Future<Either> getRecommendationTVs(int tvId);
   Future<Either> getSimilarTVs(int tvId);
+  Future<Either> getKeyWords(int tvId);
 }

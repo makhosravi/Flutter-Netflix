@@ -8,6 +8,7 @@ abstract class TVService {
   Future<Either> getPopularTv();
   Future<Either> getRecommendationTVs(int tvId);
   Future<Either> getSimilarTVs(int tvId);
+  Future<Either> getKeyWords(int tvId);
 }
 
 class TVServiceImpl extends TVService {
@@ -38,6 +39,18 @@ class TVServiceImpl extends TVService {
     try {
       var response = await sl<DioClient>().get(
         '${ApiUrl.tv}$tvId/similar',
+      );
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> getKeyWords(int tvId) async {
+    try {
+      var response = await sl<DioClient>().get(
+        '${ApiUrl.tv}$tvId/keywords',
       );
       return Right(response.data);
     } on DioException catch (e) {
