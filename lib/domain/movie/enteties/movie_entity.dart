@@ -1,6 +1,6 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter_movie/core/configs/assets/app_images.dart';
 
-class MovieEntity extends Equatable {
+class MovieEntity {
   const MovieEntity({
     required this.backdropPath,
     required this.id,
@@ -24,7 +24,7 @@ class MovieEntity extends Equatable {
   final String title;
   final String originalTitle;
   final String overview;
-  final String posterPath;
+  final String? posterPath;
   final String mediaType;
   final bool adult;
   final String originalLanguage;
@@ -71,27 +71,9 @@ class MovieEntity extends Equatable {
     );
   }
 
-  @override
-  String toString() {
-    return "$backdropPath, $id, $title, $originalTitle, $overview, $posterPath, $mediaType, $adult, $originalLanguage, $genreIds, $popularity, $releaseDate, $video, $voteAverage, $voteCount, ";
+  String providePosterPath() {
+    return posterPath != null
+        ? AppImages.movieImageBasePath + posterPath!
+        : AppImages.defaultImg;
   }
-
-  @override
-  List<Object?> get props => [
-        backdropPath,
-        id,
-        title,
-        originalTitle,
-        overview,
-        posterPath,
-        mediaType,
-        adult,
-        originalLanguage,
-        genreIds,
-        popularity,
-        releaseDate,
-        video,
-        voteAverage,
-        voteCount,
-      ];
 }

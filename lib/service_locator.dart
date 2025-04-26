@@ -15,11 +15,13 @@ import 'package:flutter_movie/domain/movie/usecases/get_now_playing_movies.dart'
 import 'package:flutter_movie/domain/movie/usecases/get_recommendation_usecase.dart';
 import 'package:flutter_movie/domain/movie/usecases/get_similar_movies_usecase.dart';
 import 'package:flutter_movie/domain/movie/usecases/get_trending_movies.dart';
+import 'package:flutter_movie/domain/movie/usecases/search_movie_usecase.dart';
 import 'package:flutter_movie/domain/tv/repositories/tv_repository.dart';
 import 'package:flutter_movie/domain/tv/usecases/get_keywords_usecase.dart';
 import 'package:flutter_movie/domain/tv/usecases/get_popular_tv.dart';
 import 'package:flutter_movie/domain/tv/usecases/get_recommendation_tv_usecase.dart';
 import 'package:flutter_movie/domain/tv/usecases/get_similar_tv_usecase.dart';
+import 'package:flutter_movie/domain/tv/usecases/search_tv_usecase.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -51,4 +53,6 @@ void setupServiceLocator() {
       GetRecommendationTvUsecase());
   sl.registerSingleton<GetSimilarTvUsecase>(GetSimilarTvUsecase());
   sl.registerSingleton<GetTVKeyWordsUsecase>(GetTVKeyWordsUsecase());
+  sl.registerSingleton<SearchMovieUsecase>(SearchMovieUsecase());
+  sl.registerSingleton<SearchTvUsecase>(SearchTvUsecase());
 }
