@@ -19,35 +19,37 @@ class SigninPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          minimum: const EdgeInsets.only(
-            top: 100.0,
-            right: 16.0,
-            left: 16.0,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _singinText(),
-              const SizedBox(
-                height: 30.0,
-              ),
-              _emailField(),
-              const SizedBox(
-                height: 20.0,
-              ),
-              _passwordField(),
-              const SizedBox(
-                height: 60.0,
-              ),
-              _signinButton(context),
-              const SizedBox(
-                height: 20.0,
-              ),
-              _singupText(context),
-            ],
-          )),
+      body: SingleChildScrollView(
+        child: SafeArea(
+            minimum: const EdgeInsets.only(
+              top: 100.0,
+              right: 16.0,
+              left: 16.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _singinText(),
+                const SizedBox(
+                  height: 30.0,
+                ),
+                _emailField(),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                _passwordField(),
+                const SizedBox(
+                  height: 60.0,
+                ),
+                _signinButton(context),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                _singupText(context),
+              ],
+            )),
+      ),
     );
   }
 
