@@ -77,6 +77,7 @@ class SignupPage extends StatelessWidget {
   Widget _passwordField() {
     return TextField(
       controller: _passwordCon,
+      obscureText: true,
       decoration: const InputDecoration(
         hintText: 'Password',
       ),
