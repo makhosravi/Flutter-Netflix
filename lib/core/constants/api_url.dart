@@ -3,6 +3,7 @@ class ApiUrl {
   static const apiV = 'api/v1/';
   static const signup = '${apiV}auth/signup';
   static const singin = '${apiV}auth/signin';
+  static const logout = '${apiV}auth/logout';
   static const trendingMovies = '${apiV}movie/trending';
   static const nowPlayingMovies = '${apiV}movie/nowplaying';
   static const popularTV = '${apiV}tv/popular';

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie/common/helper/navigation/app_navigation.dart';
 import 'package:flutter_movie/common/widgets/appbar/app_bar.dart';
 import 'package:flutter_movie/core/configs/assets/app_vectors.dart';
+import 'package:flutter_movie/presentation/auth/widgets/logout_btn.dart';
 import 'package:flutter_movie/presentation/home/widgets/category_text.dart';
 import 'package:flutter_movie/presentation/home/widgets/now_playing_movies.dart';
 import 'package:flutter_movie/presentation/home/widgets/popular_tv.dart';
@@ -17,6 +18,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: BasicAppbar(
         hideBack: true,
+        leading: const LogoutBtn(),
         action: IconButton(
           onPressed: () {
             AppNavigator.push(context, const SearchPage());

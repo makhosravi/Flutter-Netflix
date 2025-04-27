@@ -9,6 +9,7 @@ import 'package:flutter_movie/service_locator.dart';
 abstract class AuthService {
   Future<Either> signup(SignupReqParams params);
   Future<Either> signin(SigninReqParams params);
+  Future<Either> logout();
 }
 
 class AuthApiServiceImpl extends AuthService {
@@ -37,6 +38,16 @@ class AuthApiServiceImpl extends AuthService {
       return Left(e.response!.data['message']);
     }
   }
+
+  @override
+  Future<Either> logout() async {
+    try {
+      var response = await sl<DioClient>().post(ApiUrl.logout);
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
 }
 
 class AuthFirebaseApiService extends AuthService {
@@ -49,6 +60,12 @@ class AuthFirebaseApiService extends AuthService {
   @override
   Future<Either> signin(SigninReqParams params) async {
     // TODO: implement signin
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either> logout() {
+    // TODO: implement logout
     throw UnimplementedError();
   }
 }

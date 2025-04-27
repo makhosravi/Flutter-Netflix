@@ -50,6 +50,25 @@ class AuthRepositoryImpl extends AuthRepositiry {
     return token != null ? true : false;
   }
 
+  @override
+  Future<Either> logout() async {
+    var returnedData = await sl<AuthService>().logout();
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) async {
+        final bool resStatus = data['success'];
+        if (resStatus) {
+          final SharedPreferences sharedPreferences =
+              await SharedPreferences.getInstance();
+          sharedPreferences.remove('token');
+        }
+        return Right(resStatus);
+      },
+    );
+  }
+
   // If not using dependency injection, this class must be used
   // in order to use the implementation
   // AuthApiService authApiService;

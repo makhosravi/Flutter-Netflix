@@ -27,7 +27,7 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: height ?? 80.0,
       title: title ?? const Text(''),
       titleSpacing: 0,
-      leadingWidth: leading != null ? 150 : null,
+      leadingWidth: leading != null ? 55.0 : null,
       actions: [action ?? Container()],
       leading: leading ??
           (hideBack

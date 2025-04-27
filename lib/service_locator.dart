@@ -7,6 +7,7 @@ import 'package:flutter_movie/data/tv/repositories/tv_repository.dart';
 import 'package:flutter_movie/data/tv/sources/tv_service.dart';
 import 'package:flutter_movie/domain/auth/repositiries/auth.dart';
 import 'package:flutter_movie/domain/auth/usecases/is_logged_in.dart';
+import 'package:flutter_movie/domain/auth/usecases/logout.dart';
 import 'package:flutter_movie/domain/auth/usecases/signin.dart';
 import 'package:flutter_movie/domain/auth/usecases/signup.dart';
 import 'package:flutter_movie/domain/movie/repositories/movie.dart';
@@ -42,6 +43,7 @@ void setupServiceLocator() {
   // Usecase
   sl.registerSingleton<SignupUsecase>(SignupUsecase());
   sl.registerSingleton<SigninUsecase>(SigninUsecase());
+  sl.registerSingleton<LogoutUsecase>(LogoutUsecase());
   sl.registerSingleton<IsLoggedInUsecase>(IsLoggedInUsecase());
   sl.registerSingleton<GetTrendingMoviesUsecase>(GetTrendingMoviesUsecase());
   sl.registerSingleton<GetNowPlayingMovies>(GetNowPlayingMovies());
