@@ -31,21 +31,13 @@ class SigninPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _singinText(),
-                const SizedBox(
-                  height: 30.0,
-                ),
+                const SizedBox(height: 30.0),
                 _emailField(),
-                const SizedBox(
-                  height: 20.0,
-                ),
+                const SizedBox(height: 20.0),
                 _passwordField(),
-                const SizedBox(
-                  height: 60.0,
-                ),
+                const SizedBox(height: 60.0),
                 _signinButton(context),
-                const SizedBox(
-                  height: 20.0,
-                ),
+                const SizedBox(height: 20.0),
                 _singupText(context),
               ],
             )),
