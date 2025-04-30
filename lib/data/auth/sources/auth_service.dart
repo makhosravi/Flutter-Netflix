@@ -10,6 +10,8 @@ abstract class AuthService {
   Future<Either> signup(SignupReqParams params);
   Future<Either> signin(SigninReqParams params);
   Future<Either> logout();
+  Future<Either> refreshToken(String refreshToken);
+  Future<Either> authCheck();
 }
 
 class AuthApiServiceImpl extends AuthService {
@@ -48,6 +50,31 @@ class AuthApiServiceImpl extends AuthService {
       return Left(e.response!.data['message']);
     }
   }
+
+  @override
+  Future<Either> refreshToken(String refreshToken) async {
+    try {
+      var response = await sl<DioClient>().post(
+        ApiUrl.refreshToken,
+        data: {
+          'refreshToken': refreshToken,
+        },
+      );
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> authCheck() async {
+    try {
+      var response = await sl<DioClient>().get(ApiUrl.authCheck);
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
 }
 
 class AuthFirebaseApiService extends AuthService {
@@ -66,6 +93,18 @@ class AuthFirebaseApiService extends AuthService {
   @override
   Future<Either> logout() {
     // TODO: implement logout
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either> refreshToken(String refreshToken) {
+    // TODO: implement refreshToken
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either> authCheck() {
+    // TODO: implement authCheck
     throw UnimplementedError();
   }
 }

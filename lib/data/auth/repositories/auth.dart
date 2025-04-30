@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
+import 'package:flutter_movie/core/constants/param_keys.dart';
 import 'package:flutter_movie/data/auth/models/signin_req_params.dart';
 import 'package:flutter_movie/data/auth/models/signup_req_params.dart';
 import 'package:flutter_movie/data/auth/sources/auth_service.dart';
@@ -17,7 +18,10 @@ class AuthRepositoryImpl extends AuthRepositiry {
     }, (data) async {
       final SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
-      sharedPreferences.setString('token', data['user']['token']);
+      sharedPreferences.setString(
+          ParamKeys.accessTokenKey, data['user']['access_token']);
+      sharedPreferences.setString(
+          ParamKeys.refreshTokenKey, data['user']['refresh_token']);
       return Right(data);
     });
 
@@ -36,7 +40,10 @@ class AuthRepositoryImpl extends AuthRepositiry {
     }, (data) async {
       final SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
-      sharedPreferences.setString('token', data['user']['token']);
+      sharedPreferences.setString(
+          ParamKeys.accessTokenKey, data['user']['access_token']);
+      sharedPreferences.setString(
+          ParamKeys.refreshTokenKey, data['user']['refresh_token']);
       return Right(data);
     });
     //return await sl<AuthApiService>().signin(params);
@@ -46,7 +53,7 @@ class AuthRepositoryImpl extends AuthRepositiry {
   Future<bool> isLoggedIn() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    var token = sharedPreferences.getString('token');
+    var token = sharedPreferences.getString(ParamKeys.accessTokenKey);
     return token != null ? true : false;
   }
 
@@ -62,9 +69,44 @@ class AuthRepositoryImpl extends AuthRepositiry {
         if (resStatus) {
           final SharedPreferences sharedPreferences =
               await SharedPreferences.getInstance();
-          sharedPreferences.remove('token');
+          sharedPreferences.clear();
         }
         return Right(resStatus);
+      },
+    );
+  }
+
+  @override
+  Future<Either> refreshToken(String refreshToken) async {
+    var returnedData = await sl<AuthService>().refreshToken(refreshToken);
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) async {
+        final String accessToken = data['access_token'];
+
+        final SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        await sharedPreferences.setString(
+          ParamKeys.accessTokenKey,
+          accessToken,
+        );
+
+        return Right(data);
+      },
+    );
+  }
+
+  @override
+  Future<Either> authCheck() async {
+    var returnedData = await sl<AuthService>().authCheck();
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) async {
+        return Right(data);
       },
     );
   }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movie/core/configs/theme/app_theme.dart';
+import 'package:flutter_movie/core/constants/app_routes.dart';
 import 'package:flutter_movie/presentation/splash/bloc/splash_cubit.dart';
-import 'package:flutter_movie/presentation/splash/pages/splash.dart';
 import 'package:flutter_movie/service_locator.dart';
 
 void main() {
@@ -26,9 +26,11 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => SplashCubit()..appStarted(),
       child: MaterialApp(
+        navigatorKey: sl<GlobalKey<NavigatorState>>(),
+        initialRoute: '/',
+        routes: AppRoutes.routes,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.appTheme,
-        home: const SplashPage(),
       ),
     );
   }

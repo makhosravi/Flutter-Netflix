@@ -10,4 +10,8 @@ abstract class AuthRepositiry {
   Future<bool> isLoggedIn();
 
   Future<Either> logout();
+
+  Future<Either> refreshToken(String refreshToken);
+
+  Future<Either> authCheck();
 }

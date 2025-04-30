@@ -39,6 +39,16 @@ class DioClient {
     }
   }
 
+  //Fetch Method
+  Future<Response> fetch(RequestOptions requestOptions) {
+    try {
+      final response = _dio.fetch(requestOptions);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   //POST METHOD
   Future<Response> post(
     String url, {
