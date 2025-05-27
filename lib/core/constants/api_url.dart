@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const baseURL = 'https://movie-back.liara.run/';
+  static const baseURL = 'https://movieapp-movieapp-compose-vcoqxd-b0de08-82-115-20-160.traefik.me/';
   static const apiV = 'api/v1/';
   static const signup = '${apiV}auth/signup';
   static const singin = '${apiV}auth/signin';
