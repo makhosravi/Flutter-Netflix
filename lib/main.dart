@@ -6,9 +6,11 @@ import 'package:flutter_movie/core/constants/app_routes.dart';
 import 'package:flutter_movie/presentation/splash/bloc/splash_cubit.dart';
 import 'package:flutter_movie/service_locator.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   setupServiceLocator();
+
   runApp(const MyApp());
 }
 
